@@ -13,10 +13,13 @@ class Application(tk.Frame):
 
     def get_word(self):
         data = ["Africa", "America", "Asia", "Europe"]
-        return data[random(0, len(data) - 1)]
+        return data[random.randint(0, len(data) - 1)]
 
     def get_start_string(self):
         return "".join("-" for x in self.word)
+
+    def submit(self, data):
+        pass
 
     def create_widgets(self):
         # info label
@@ -24,24 +27,24 @@ class Application(tk.Frame):
         self.info_label.pack(side="top")
 
         # Words
-        self.info_label = tk.Label(self, fg="green")
-        self.info_label.pack(side="top")
+        self.the_word = tk.Label(self, fg="green")
+        self.the_word.pack(side="top")
 
         # Input
-        self.city_input = tk.Entry(self)
-        self.city_input.pack(side="top")
+        self.letter = tk.Entry(self)
+        self.letter.pack(side="top")
 
-        # request button
-        self.request_button = tk.Button(self, text="submit", fg="green", command=self.submit)
-        self.request_button.pack(side="top")
+        # submit button
+        self.submit_button = tk.Button(self, text="submit", fg="green", command=self.submit(self.letter.get()))
+        self.submit_button.pack(side="top")
 
         # Error message
-        self.info_label = tk.Label(self, fg="red")
-        self.info_label.pack(side="top")
+        self.err_message = tk.Label(self, fg="red")
+        self.err_message.pack(side="top")
         
         # Life status
-        self.info_label = tk.Label(self, text="Lifes left: 10", fg="blue")
-        self.info_label.pack(side="top")
+        self.life_status = tk.Label(self, text="Lifes left: 10", fg="blue")
+        self.life_status.pack(side="top")
 
         # exit button
         self.quit = tk.Button(self, text="QUIT", fg="red", command=self.master.destroy)
